@@ -50,7 +50,15 @@ namespace UnityStandardAssets.Vehicles.Car
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
         public float CurrentSteerAngle{ get { return m_SteerAngle; }}
-        public float CurrentSpeed{ get { return m_Rigidbody.velocity.magnitude*2.23693629f; }}
+        public float CurrentSpeed { 
+            get { return m_Rigidbody.velocity.magnitude * 2.23693629f; } 
+            set { 
+                m_Rigidbody.velocity = new Vector3(
+                    (m_Rigidbody.velocity.x / m_Rigidbody.velocity.magnitude) * value,
+                    (m_Rigidbody.velocity.y / m_Rigidbody.velocity.magnitude) * value,
+                    (m_Rigidbody.velocity.z / m_Rigidbody.velocity.magnitude) * value); 
+            } 
+        }
         public float MaxSpeed{get { return m_Topspeed; }}
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
