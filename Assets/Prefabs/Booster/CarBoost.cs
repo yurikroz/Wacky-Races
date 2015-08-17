@@ -4,8 +4,8 @@ using UnityStandardAssets.Vehicles.Car;
 
 public class CarBoost : MonoBehaviour {
 
-    public GameObject playerCar;
-    float start;
+    //public GameObject playerCar;
+    //float start;
 	// Use this for initialization
 	void Start () {
 	}
@@ -17,10 +17,11 @@ public class CarBoost : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Booster"))
+        if (other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.SetActive(false);
-            StartCoroutine(BoostCar(playerCar));
+            //other.gameObject.SetActive(false);
+            StartCoroutine(BoostCar(other.gameObject));
+            this.gameObject.SetActive(false);
         }
         //Destroy(other.gameObject);
     }
@@ -28,16 +29,18 @@ public class CarBoost : MonoBehaviour {
     public IEnumerator BoostCar(GameObject playerCar) 
     {
         // Increase a player's car speed
-        playerCar.GetComponent<CarController>().CurrentSpeed += 60.0f;
+        playerCar.GetComponent<CarController>().CurrentSpeed = 20.0f;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
+
+        playerCar.GetComponent<CarController>().CurrentSpeed = -20.0f;
 
         // Decrease a player's car speed
-        playerCar.GetComponent<CarController>().CurrentSpeed -= 10.0f;
+        /*playerCar.GetComponent<CarController>().CurrentSpeed -= 10.0f;
         yield return new WaitForSeconds(0.2f);
         playerCar.GetComponent<CarController>().CurrentSpeed -= 10.0f;
         yield return new WaitForSeconds(0.2f);
-        playerCar.GetComponent<CarController>().CurrentSpeed -= 10.0f;
+        playerCar.GetComponent<CarController>().CurrentSpeed -= 10.0f;*/
         Debug.Log("in boostCar");
     }
 }
