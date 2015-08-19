@@ -7,6 +7,7 @@ public class RaceStartCountdownScript : MonoBehaviour
 {
     public GameTimerScript gameTimer;
     public CarUserControl[] cars;
+    public CarAIControl[] AIcars;
     public Text counterText;
     private float counter = 0;
     private string[] counterTextValues = {"3", "2", "1", "GO!"};
@@ -17,6 +18,11 @@ public class RaceStartCountdownScript : MonoBehaviour
         for (int i = 0; i < cars.Length; i++)
         {
             cars[i].ControlEnabled = false;
+        }
+
+        for (int i = 0; i < AIcars.Length; i++)
+        {
+            AIcars[i].SetControlEnabled(false);
         }
 	}
 	
@@ -29,6 +35,11 @@ public class RaceStartCountdownScript : MonoBehaviour
             for (int i = 0; i < cars.Length; i++)
             {
                 cars[i].ControlEnabled = true;
+            }
+
+            for (int i = 0; i < AIcars.Length; i++)
+            {
+                AIcars[i].SetControlEnabled(true);
             }
         }
         else
