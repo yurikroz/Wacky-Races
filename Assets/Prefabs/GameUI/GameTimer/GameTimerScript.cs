@@ -2,10 +2,11 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Timer : MonoBehaviour {
+public class GameTimerScript : MonoBehaviour {
 
     public float timePassed = 0f;
     public Text timerText;
+    public bool isActive = true;
 
 	// Use this for initialization
 	void Start () {
@@ -14,8 +15,11 @@ public class Timer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timePassed += Time.deltaTime;
-        updateTimerText();
+        if (isActive)
+        { 
+            timePassed += Time.deltaTime;
+            updateTimerText();
+        }
 	}
 
     private void updateTimerText()
