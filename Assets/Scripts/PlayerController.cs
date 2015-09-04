@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour {
     // A reference to the game object's rigidbody component
     private Rigidbody rb;
     public Text scoreText;
+    //public GameObject scoreText;
     private int score = 0;
+    const int winScore = 12;
 
     // Called only once when the script is attached to an object
     //
@@ -39,11 +41,10 @@ public class PlayerController : MonoBehaviour {
 
     void SetCountText()
     {
-        scoreText.text = "Score: " + score.ToString();
-
-        if (score >= 12)
+        GetComponentInChildren<Text>().text = "Score: " + score.ToString();
+        if (score >= winScore)
         {
-            scoreText.text = "You win!";
+            GetComponentInChildren<Text>().text = "You win!";
         }
     }
 }

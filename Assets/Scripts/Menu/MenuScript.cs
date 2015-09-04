@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Assets.Scripts;
 
 public class MenuScript : MonoBehaviour {
    
@@ -77,6 +78,7 @@ public class MenuScript : MonoBehaviour {
     // On "Single Player" button pressed
     public void SinglePlayerPress()
     {
+        PlayerPrefs.SetString(Globals.GamePrefs.GameMode.ToString(), Globals.GameMode.SinglePlayer.ToString());
         singlePlayerMenu.enabled = true;
         multiplayerMenu.enabled = false;
         aboutMenu.enabled = false;
@@ -86,6 +88,7 @@ public class MenuScript : MonoBehaviour {
     // On "Multiplayer" button pressed
     public void MultiplayerPress()
     {
+        PlayerPrefs.SetString(Globals.GamePrefs.GameMode.ToString(), Globals.GameMode.MultiPlayer.ToString());
         singlePlayerMenu.enabled = false;
         multiplayerMenu.enabled = true;
         aboutMenu.enabled = false;
