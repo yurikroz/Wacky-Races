@@ -35,8 +35,8 @@ public class NetworkManager : MonoBehaviour {
     {
 //        GameObject player =  PhotonNetwork.Instantiate(prefabName, SpawnPoints[i].position, SpawnPoints[i].rotation, group);
         player = PhotonNetwork.Instantiate(prefabName, SpawnPoint1.position, SpawnPoint1.rotation, group);
-        player.tag = Globals.Tags.Player.ToString();
-        player.transform.position = SpawnPoints[player.GetPhotonView().viewID/1000].position;
+       // player.tag = Globals.Tags.Player.ToString();
+        player.transform.position = SpawnPoints[player.GetPhotonView().viewID/1000%2].position;
         player.SetActive(true);
         Debug.Log("prefab Name:" + prefabName + " number: " + player.GetPhotonView().viewID +"\nIsActive: " + player.GetActive());
         //create to spawn points 

@@ -16,7 +16,7 @@ namespace Assets.Scripts
 
         public enum Tags 
         {
-            Player, Car, Booster
+            Player, Car, Booster, WinLooseMessage
         }
     }
 }

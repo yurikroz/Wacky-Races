@@ -9,7 +9,13 @@ public class GameController : MonoBehaviour {
     public GameObject networkManager;
 	// Use this for initialization
 	void Start () {
-        mode = PlayerPrefs.GetString(Globals.GamePrefs.GameMode.ToString());
+        if (!string.IsNullOrEmpty(Globals.GamePrefs.GameMode.ToString()))
+            mode = PlayerPrefs.GetString(Globals.GamePrefs.GameMode.ToString());
+        
+        //////////////////////////for debug only!!!
+        //mode = Globals.GameMode.SinglePlayer.ToString();
+        //////////////////////////for debug only!!!
+        Debug.Log("Mode: " + mode);
         if (mode == Globals.GameMode.SinglePlayer.ToString())
         {
             playerCar.SetActive(true);

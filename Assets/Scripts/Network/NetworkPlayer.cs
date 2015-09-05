@@ -10,14 +10,14 @@ public class NetworkPlayer : Photon.MonoBehaviour {
         {
             Camera.SetActive(true);
             //Camera.se
-            GetComponent<CarUserControl>().ControlEnabled = true;
+            GetComponentInChildren<CarUserControl>().ControlEnabled = true;
             GetComponentInChildren<Camera>().enabled = true;
-            GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<PlayerController>().enabled = true;
+            GetComponentInChildren<Rigidbody>().useGravity = true;
+            GetComponentInChildren<PlayerController>().enabled = true;
         }
         else
         {
-            GetComponent<CarController>().enabled = false;
+            GetComponentInChildren<CarController>().enabled = false;
             Debug.Log("NetworkPlayer car controller disabled");
         }
 	}
