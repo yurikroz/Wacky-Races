@@ -28,6 +28,7 @@ public class FinishLineScript : MonoBehaviour {
 
             if (collider.gameObject.tag == Globals.Tags.Player.ToString())
             {
+                message.gameObject.SetActive(true);
                 message.GetComponent<Canvas>().enabled = true;
                 textMessage.text = "You win!";
                 GetComponent<BoxCollider>().isTrigger = false;
@@ -35,6 +36,7 @@ public class FinishLineScript : MonoBehaviour {
             }
             else if (collider.gameObject.tag == Globals.Tags.Car.ToString())
             {
+                message.gameObject.SetActive(true);
                 message.GetComponent<Canvas>().enabled = true;
                 textMessage.text = "You loose!";
                 gameObject.SetActive(false);
