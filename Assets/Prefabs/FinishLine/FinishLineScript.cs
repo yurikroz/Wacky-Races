@@ -20,7 +20,8 @@ public class FinishLineScript : MonoBehaviour {
 
         string mode = PlayerPrefs.GetString(Globals.GamePrefs.GameMode.ToString());
 
-        if (mode == Globals.GameMode.SinglePlayer.ToString())
+        if (mode == Globals.GameMode.SinglePlayer.ToString() 
+            && (collider.gameObject.tag == Globals.Tags.Player.ToString() || collider.gameObject.tag == Globals.Tags.Car.ToString()))
         { // Singleplayer
             //message.gameObject.SetActive(true);
             
@@ -34,7 +35,7 @@ public class FinishLineScript : MonoBehaviour {
                 GetComponent<BoxCollider>().isTrigger = false;
                 gameObject.SetActive(false);
             }
-            else if (collider.gameObject.tag == Globals.Tags.Car.ToString())
+            else
             {
                 message.gameObject.SetActive(true);
                 message.GetComponent<Canvas>().enabled = true;
@@ -46,7 +47,26 @@ public class FinishLineScript : MonoBehaviour {
         }
         else
         { // Multiplayer
+            if(collider.gameObject.GetComponent<PhotonView>().viewID !=0)
+            {
+                Debug.Log("is mine: " + collider.gameObject.GetPhotonView().viewID);
 
+            }
+            if (collider.gameObject.GetPhotonView().isMine)
+            {
+                message.gameObject.SetActive(true);
+                message.GetComponent<Canvas>().enabled = true;
+                textMessage.text = "You win!";
+                GetComponent<BoxCollider>().isTrigger = false;
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                message.gameObject.SetActive(true);
+                message.GetComponent<Canvas>().enabled = true;
+                textMessage.text = "You loose!";
+                gameObject.SetActive(false);
+            }
         }
     }
 }

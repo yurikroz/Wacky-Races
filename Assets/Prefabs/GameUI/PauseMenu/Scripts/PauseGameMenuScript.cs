@@ -26,10 +26,15 @@ public class PauseGameMenuScript : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        if(PlayerPrefs.GetString(Globals.GamePrefs.GameMode.ToString()).Equals(Globals.GameMode.MultiPlayer.ToString()))
+        if (PlayerPrefs.GetString(Globals.GamePrefs.GameMode.ToString()).Equals(Globals.GameMode.MultiPlayer.ToString()))
         {
-            PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.player);
-            Debug.Log("leaving the room");
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(Globals.Tags.Player.ToString());
+            foreach(GameObject player in gameObjects)
+			{
+                Debug.Log("leaving the room");
+                PhotonNetwork.Destroy(player);
+			}
+            //PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.player);
         }
         Application.LoadLevel(0);
     }

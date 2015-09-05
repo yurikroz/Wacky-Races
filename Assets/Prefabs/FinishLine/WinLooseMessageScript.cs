@@ -15,7 +15,7 @@ public class WinLooseMessageScript : MonoBehaviour {
 
     public void ReturnToMainMenu()
     {
-        if(PlayerPrefs.GetString(Globals.GamePrefs.GameMode.ToString()).Equals(Globals.GameMode.MultiPlayer.ToString()))
+        if (PlayerPrefs.GetString(Globals.GamePrefs.GameMode.ToString()).Equals(Globals.GameMode.MultiPlayer.ToString()))
         {
             PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.player);
             Debug.Log("leaving the room");
